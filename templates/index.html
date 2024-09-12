@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator - Matrix Theme</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <!-- Matrix video background -->
+    <video class="video-bg" autoplay loop muted>
+        <source src="{{ url_for('static', filename='video/matrix.mp4') }}" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1 class="text-6xl font-bold">Random Password Generator</h1>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="flex items-center justify-center h-screen content">
+        <div class="box text-center">
+            <!-- Security Image -->
+            <img src="{{ url_for('static', filename='images/security.png') }}" alt="Security Icon">
+
+            <!-- Form Section -->
+            <div>
+                <h6 class="text-4xl font-bold mb-4">Create strong and secure passwords <br> to keep your account safe online.
+
+                </h6>
+
+                <!-- Slider for Password Length -->
+                <div class="mb-4">
+                    <label for="length-slider" class="block mb-2 text-lg">Password Length: <span id="length-display">12</span></label>
+                    <input type="range" id="length-slider" min="6" max="20" value="12" class="slider">
+                </div>
+
+                <!-- Checkboxes for Options -->
+                <div class="include-options mb-4">
+                    <label>
+                        <input type="checkbox" id="include-abc" checked>
+                        Include ABC
+                    </label>
+                    <label>
+                        <input type="checkbox" id="include-123" checked>
+                        Include 123
+                    </label>
+                    <label>
+                        <input type="checkbox" id="include-special" checked>
+                        Include !@#%
+                    </label>
+                </div>
+
+                <!-- Generate Button -->
+                <button id="generate-btn" class="bg-green-500 px-6 py-2 rounded-lg hover:bg-green-600 transition">
+                    Generate Password
+                </button>
+
+                <!-- Display Password -->
+                <div id="password-box" class="password-box hidden">
+                    <p id="password-display" class="text-xl"></p>
+                    <button id="copy-btn" class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Made with 💖 by Noman Ahmed</p>
+        <p>
+            <a href="https://www.linkedin.com/in/noman-ahmed" target="_blank">Connect on LinkedIn</a>
+        </p>
+    </footer>
+
+    <script>
+        // Display the selected password length from the slider
+        const lengthSlider = document.getElementById('length-slider');
+        const lengthDisplay = document.getElementById('length-display');
+        lengthSlider.addEventListener('input', function() {
+            lengthDisplay.textContent = lengthSlider.value;
+        });
+
+        // Generate password on button click
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            const length = lengthSlider.value;
+            const includeABC = document.getElementById('include-abc').checked;
+            const include123 = document.getElementById('include-123').checked;
+            const includeSpecial = document.getElementById('include-special').checked;
+
+            fetch(`/generate-password?length=${length}&abc=${includeABC}&123=${include123}&special=${includeSpecial}`)
+                .then(response => response.json())
+                .then(data => {
+                    const passwordBox = document.getElementById('password-box');
+                    const passwordDisplay = document.getElementById('password-display');
+                    const copyBtn = document.getElementById('copy-btn');
+
+                    passwordDisplay.textContent = data.password;
+                    passwordBox.classList.remove('hidden');
+
+                    // Copy to clipboard functionality
+                    copyBtn.addEventListener('click', function() {
+                        navigator.clipboard.writeText(data.password).then(() => {
+                            alert('Password copied to clipboard!');
+                        });
+                    });
+                })
+                .catch(error => console.error('Error generating password:', error));
+        });
+    </script>
+</body>
+</html>
