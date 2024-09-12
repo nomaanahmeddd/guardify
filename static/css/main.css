@@ -11,26 +11,27 @@
      padding: 0;
      overflow: hidden; /* Prevent scrollbars */
  }
- .video-bg {
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     object-fit: cover;
-     z-index: -3; /* Ensure it's behind other content */
- }
- 
- .overlay {
-     background-color: rgba(0, 0, 0, 0.6);
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     z-index: -2; /* Ensure it's behind the content */
- }
- 
+/* Background image styling */
+.image-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire screen */
+    z-index: -3; /* Ensure it's behind other content */
+}
+
+/* Keep the overlay */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Ensure it's behind the content */
+}
  .navbar {
      background-color: #000;
      font-family: 'MatrixFont', sans-serif;
