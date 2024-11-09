@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator</title>
+    <title>Guardify- Password Generator</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1 class="text-3xl font-bold mb-4">🔐 Random Password Generator</h1>
+        <h2 class="text-3xl font-bold mb-4">🔐 GUARDIFY </h2>
+        <h2 class="text-2xl font-bold mb-3"> Random Password Generator </h2>
         <label for="length-slider" class="block mb-2 text-lg">Password Length: <span id="length-display" class="font-bold">12</span></label>
         <input type="range" id="length-slider" min="6" max="20" value="12" class="slider w-full mb-4">
         <div class="flex justify-around mb-4 text-sm md:text-base">
