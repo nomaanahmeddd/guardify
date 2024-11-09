@@ -16,7 +16,7 @@ A dynamic password generator web app built with Python, Flask, HTML, and Tailwin
 
 ## Screenshots
 
-![App Screenshot](https://github.com/nomaanahmeddd/guardify/raw/0f900986c53ff0a12eac32de4d8a17458abefcc9/preview)
+![App Screenshot](https://github.com/nomaanahmeddd/guardify/blob/334a6646b036b0dd9b5e55f839875dc4dd7684a0/preview)
 
 ## Installation
 
